@@ -80,4 +80,31 @@ public class ArrayLeetCode {
         return result;
     }
 
+    /**
+     * 给你一个数组 nums ，数组中有 2n 个元素，按 [x1,x2,...,xn,y1,y2,...,yn] 的格式排列。
+     * 请你将数组按 [x1,y1,x2,y2,...,xn,yn] 格式重新排列，返回重排后的数组。
+     *
+     * @param nums nums = [2,5,1,3,4,7],
+     * @param n    n = 3
+     * @return [2, 3, 5, 4, 1, 7]
+     */
+    public int[] shuffle(int[] nums, int n) {
+        if (n == 1) {
+            return nums;
+        }
+        int[] result = new int[nums.length];
+        int j = 0;
+        for (int i = 0; i < n; i++) {
+            /*if (i % 2 == 0) {
+                result[i] = nums[j++];
+            } else {
+                result[i] = nums[n++];
+            }*/
+            // 双指针
+            result[j++] = nums[i];
+            result[j++] = nums[n + i];
+        }
+        return result;
+    }
+
 }
