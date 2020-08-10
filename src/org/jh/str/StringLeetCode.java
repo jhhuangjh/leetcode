@@ -76,5 +76,45 @@ public class StringLeetCode {
         return "";
     }
 
+    /**
+     * 在一个「平衡字符串」中，'L' 和 'R' 字符的数量是相同的。
+     * 给出一个平衡字符串 s，请你将它分割成尽可能多的平衡字符串。
+     * s[i] = 'L' 或 'R'
+     * 分割得到的每个字符串都必须是平衡字符串。
+     *
+     * @param s s = "RLRRLLRLRL"
+     * @return 4 "RL", "RRLL", "RL", "RL"
+     */
+    public int balancedStringSplit(String s) {
+       /* Stack<Character> stack = new Stack<Character>();
+        int result = 0;
+        for(int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            if(stack.isEmpty() || c == stack.peek()) {
+                stack.push(c);
+            }
+            else{
+                stack.pop();
+            }
+            if(stack.isEmpty()) {
+                result++;
+            }
+        }
+        return result;*/
+        int num = 0;
+        int result = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == 'L') {
+                num--;
+            } else {
+                num++;
+            }
+            if (num == 0) {
+                result++;
+            }
+        }
+        return result;
+    }
+
 
 }
