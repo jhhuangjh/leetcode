@@ -1,8 +1,6 @@
 package org.jh.str;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author hjh
@@ -114,6 +112,43 @@ public class StringLeetCode {
             }
         }
         return result;
+    }
+
+    /**
+     * 为了方便，所有26个英文字母对应摩尔斯密码表如下：
+     * [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---",
+     * "-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-",
+     * "..-","...-",".--","-..-","-.--","--.."]
+     * 给定一个单词列表，每个单词可以写成每个字母对应摩尔斯密码的组合。
+     * 例如，"cab" 可以写成 "-.-..--..."，(即 "-.-." + ".-" + "-..." 字符串的结合)。
+     * 我们将这样一个连接过程称作单词翻译。
+     * 返回我们可以获得所有词不同单词翻译的数量。
+     * 各单词翻译如下:
+     * "gin" -> "--...-."
+     * "zen" -> "--...-."
+     * "gig" -> "--...--."
+     * "msg" -> "--...--."
+     * 共有 2 种不同翻译, "--...-." 和 "--...--.".
+     *
+     * @param words words = ["gin", "zen", "gig", "msg"]
+     * @return 2
+     * @date 2020/08/12
+     */
+    public int uniqueMorseRepresentations(String[] words) {
+        // 摩尔斯密码表
+        String[] strings = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....",
+                "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-",
+                ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
+        Set<String> resultSet = new HashSet<>();
+        // 遍历words，得到每个word的单词翻译
+        for (String word : words) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < word.length(); i++) {
+                sb.append(strings[word.charAt(i) - 97]);
+            }
+            resultSet.add(sb.toString());
+        }
+        return resultSet.size();
     }
 
 
