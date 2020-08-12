@@ -1,9 +1,6 @@
 package org.jh.arr;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author hjh
@@ -103,6 +100,35 @@ public class ArrayLeetCode {
             // 双指针
             result[j++] = nums[i];
             result[j++] = nums[n + i];
+        }
+        return result;
+    }
+
+    /**
+     * 给你一个以行程长度编码压缩的整数列表 nums 
+     * 考虑每对相邻的两个元素 [freq, val] = [nums[2*i], nums[2*i+1]] （其中 i >= 0 ），
+     * 每一对都表示解压后子列表中有 freq 个值为 val 的元素，
+     * 你需要从左到右连接所有子列表以生成解压后的列表。
+     * 请你返回解压后的列表。
+     * 第一对 [1,2] 代表着 2 的出现频次为 1，所以生成数组 [2]。
+     * 第二对 [3,4] 代表着 4 的出现频次为 3，所以生成数组 [4,4,4]。
+     * 最后将它们串联到一起 [2] + [4,4,4] = [2,4,4,4]
+     *
+     * @param nums nums = [1,2,3,4]
+     * @return [2, 4, 4, 4]
+     * @date 2020/08/12
+     */
+    public int[] decompressRLElist(int[] nums) {
+        int len = 0;
+        // 遍历得到新数组的长度
+        for (int i = 0; i < nums.length; i += 2) {
+            len += nums[i];
+        }
+        int[] result = new int[len];
+        for (int i = 0, index = 0; i < nums.length; i += 2) {
+            for (int j = 0; j < nums[i]; j++) {
+                result[index++] = nums[i + 1];
+            }
         }
         return result;
     }
