@@ -133,4 +133,31 @@ public class ArrayLeetCode {
         return result;
     }
 
+    /**
+     * 给你两个整数数组 nums 和 index。你需要按照以下规则创建目标数组：
+     * 目标数组 target 最初为空。
+     * 按从左到右的顺序依次读取 nums[i] 和 index[i]，
+     * 在 target 数组中的下标 index[i] 处插入值 nums[i] 。
+     * 重复上一步，直到在 nums 和 index 中都没有要读取的元素。
+     *
+     * @param nums  nums = [0,1,2,3,4]
+     * @param index index = [0,1,2,2,1]
+     * @return [0, 4, 1, 3, 2]
+     * @date 2020/08/15
+     */
+    public int[] createTargetArray(int[] nums, int[] index) {
+        int n = nums.length;
+        int[] target = new int[n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                index[j] += index[j] >= index[i] ? 1 : 0;
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            target[index[i]] = nums[i];
+        }
+        return target;
+    }
+
+
 }
