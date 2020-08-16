@@ -159,5 +159,48 @@ public class ArrayLeetCode {
         return target;
     }
 
+    /**
+     * 给你一个数组 nums，对于其中每个元素 nums[i]，请你统计数组中比它小的所有数字的数目。
+     * 换而言之，对于每个 nums[i] 你必须计算出有效的 j 的数量，
+     * 其中 j 满足 j != i 且 nums[j] < nums[i] 。
+     * 2 <= nums.length <= 500
+     * 0 <= nums[i] <= 100
+     * 解题思路
+     * 桶排序思想，先在桶中计算元素的数量，再遍历桶，计算当前元素的前面所有元素的数量，并将结果赋值给当前元素。
+     * 这样桶中就记录了比当前元素小的所有数字的数目，再遍历原数组将桶中对应的值取出放入数组并返回。
+     *
+     * @param nums nums = [8,1,2,2,3]
+     * @return [4, 0, 1, 1, 3]
+     * @date 2020.08.16
+     */
+    public int[] smallerNumbersThanCurrent(int[] nums) {
+        /*int n = nums.length;
+        int[] result = new int[n];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (nums[i] > nums[j] && i != j)
+                    result[i]++;
+            }
+        }
+        return result;*/
+        // 索引对应数值
+        int[] temp = new int[101];
+        for (int num : nums) {
+            temp[num]++;
+        }
+        // 从前面开始累加
+        for (int i = 1; i < temp.length; i++) {
+            temp[i] = temp[i] + temp[i - 1];
+        }
+        int len = nums.length;
+        int[] result = new int[len];
+        for (int i = 0; i < len; i++) {
+            if (nums[i] > 0) {
+                result[i] = temp[nums[i] - 1];
+            }
+        }
+        return result;
+    }
+
 
 }
