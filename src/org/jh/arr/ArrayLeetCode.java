@@ -2,6 +2,9 @@ package org.jh.arr;
 
 import java.util.*;
 
+import static java.lang.Math.log;
+import static java.lang.Math.log10;
+
 /**
  * @author hjh
  * @version 1.0
@@ -200,6 +203,39 @@ public class ArrayLeetCode {
             }
         }
         return result;
+    }
+
+    /**
+     * 1295. 统计位数为偶数的数字
+     * 给你一个整数数组 nums，请你返回其中位数为 偶数 的数字的个数。
+     *
+     * @param nums nums = [12,345,2,6,7896]
+     * @return 2
+     * @date 2020.08.17
+     */
+    public int findNumbers(int[] nums) {
+        /*int count = 0;
+        for (int value : nums) {
+            int num = value;
+            //记录除10的次数
+            int countTen = 0;
+            while (num != 0) {
+                num /= 10;
+                countTen++;
+            }
+            //如果除10的次数是偶数次，则该数为偶数位数
+            if (count % 2 == 0) {
+                count++;
+            }
+        }
+        return count;*/
+        int count = 0;
+        for (int num : nums) {
+            if ((int) (Math.log10(num) + 1) % 2 == 0) {
+                ++count;
+            }
+        }
+        return count;
     }
 
 
