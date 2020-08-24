@@ -257,5 +257,30 @@ public class ArrayLeetCode {
         return result;
     }
 
+    /**
+     * 1464. 数组中两元素的最大乘积
+     * 给你一个整数数组 nums，请你选择数组的两个不同下标 i 和 j，
+     * 使 (nums[i]-1)*(nums[j]-1) 取得最大值。
+     * 请你计算并返回该式的最大值。
+     * 2 <= nums.length <= 500
+     * 1 <= nums[i] <= 10^3
+     *
+     * @param nums nums = [3,4,5,2]
+     * @return 12
+     * @date 2020.08.04
+     * [10,2,5,2]
+     */
+    public int maxProduct(int[] nums) {
+        int x = 0, y = 0;
+        for (int num : nums) {
+            if (num > x) {
+                y = x;
+                x = num;
+            } else if (num > y) {
+                y = num;
+            }
+        }
+        return (x - 1) * (y - 1);
+    }
 
 }
