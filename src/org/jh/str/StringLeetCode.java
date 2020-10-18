@@ -320,6 +320,27 @@ public class StringLeetCode {
         return sb.toString();
     }
 
+    /**
+     * 557. 反转字符串中的单词 III
+     * 给定一个字符串，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。
+     *
+     * @param s "Let's take LeetCode contest"
+     * @return "s'teL ekat edoCteeL tsetnoc"
+     */
+    public String reverseWords(String s) {
+        StringBuilder sb = new StringBuilder();
+        String[] strings = s.split("\\s+");
+        for (int i = 0; i < strings.length; i++) {
+            char[] chars = strings[i].toCharArray();
+            for (int j = chars.length - 1; j >= 0; j--) {
+                sb.append(chars[j]);
+            }
+            if (i != strings.length - 1) {
+                sb.append(" ");
+            }
+        }
+        return sb.toString();
+    }
 
 
 }
