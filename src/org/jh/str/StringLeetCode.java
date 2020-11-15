@@ -392,4 +392,26 @@ public class StringLeetCode {
         }
         return true;
     }
+
+    /**
+     * 1556. 千位分隔数
+     * 给你一个整数 n，请你每隔三位添加点（即 "." 符号）作为千位分隔符，并将结果以字符串格式返回。
+     *
+     * @param n = 123456789
+     * @return "123.456.789"
+     */
+    public String thousandSeparator(int n) {
+        StringBuilder sb = new StringBuilder();
+        String str = String.valueOf(n);
+        int index = 0;
+        for (int i = str.length() - 1; i >= 0; --i) {
+            sb.append(str.charAt(i));
+            index++;
+            // 如果条件满足，则不是最后一个字符
+            if (index % 3 == 0 && i != 0) {
+                sb.append(".");
+            }
+        }
+        return sb.reverse().toString();
+    }
 }
