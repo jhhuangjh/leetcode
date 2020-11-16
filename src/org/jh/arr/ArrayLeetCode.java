@@ -304,4 +304,45 @@ public class ArrayLeetCode {
         return resultNum;
     }
 
+    /**
+     * 面试题 17.10. 主要元素
+     * 数组中占比超过一半的元素称之为主要元素。给定一个整数数组，找到它的主要元素。若没有，返回-1。
+     *
+     * @param nums [1,2,5,9,5,9,5,5,5] [3,2]
+     * @return 5 -1
+     */
+    public int majorityElement(int[] nums) {
+        /*HashMap<Integer,Integer> map=new HashMap<>();
+        for (int num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+            if (map.get(num) > (nums.length / 2)) return num;
+        }
+        return -1;*/
+        // 首先找到这个数组中出现最多的元素。
+        int cur = nums[0];
+        int count = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (cur == nums[i]) {
+                count++;
+            } else {
+                count--;
+            }
+
+            if (count == 0) {
+                cur = nums[i];
+                count = 1;
+            }
+        }
+        // 遍历一遍结果就是找到出现次数最多的元素，判断是不是满足题目中大于一半的条件。
+        int curNum = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == cur) {
+                curNum++;
+            }
+        }
+        if (curNum > nums.length / 2) {
+            return cur;
+        }
+        return -1;
+    }
 }
