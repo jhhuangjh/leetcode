@@ -9,11 +9,10 @@ import java.util.ArrayList;
  */
 public class Main {
     public static void main(String[] args) {
-        MyArrayList<String> list = new MyArrayList<>(0);
+        MyArrayList<String> list = new MyArrayList<>();
         for (int i = 0; i < 1000; i++) {
             list.add(""+ i);
         }
         System.out.println(list.size());
-        System.out.println(2 + (2>>1));
     }
 }
