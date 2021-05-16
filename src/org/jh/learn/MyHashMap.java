@@ -114,7 +114,7 @@ public class MyHashMap<K,V> {
             inflateTable(threshold);
         }
         if (key == null) {
-            return null;
+            return putForNullKey(value);
         }
         int hash = hash(key);
         int i = indexFor(hash, table.length);
@@ -129,6 +129,19 @@ public class MyHashMap<K,V> {
         
         modCount++;
         addEntry(hash, key, value, i);
+        return null;
+    }
+
+    public V putForNullKey(V value) {
+        for (Entry<K,V> e = table[0]; e != null; e = e.next) {
+            if(e.key == null) {
+                V oldValue = e.value;
+                e.value = value;
+                return oldValue;
+            }
+        }
+        modCount++;
+        addEntry(0, null, value, 0);
         return null;
     }
 
