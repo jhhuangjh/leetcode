@@ -414,4 +414,44 @@ public class StringLeetCode {
         }
         return sb.reverse().toString();
     }
+
+    /**
+     * 字符串轮转。给定两个字符串s1和s2，请编写代码检查s2是否为s1旋转而成
+     * （比如，waterbottle是erbottlewat旋转后的字符串）。
+     *
+     * @param s1 s1 = "waterbottle"
+     * @param s2 s2 = "erbottlewat"
+     * @return true
+     */
+    public boolean isFlipedString(String s1, String s2) {
+        return s1.length() == s2.length() && (s1 + s1).contains(s2);
+    }
+
+    /**
+     * 字符串压缩。利用字符重复出现的次数，编写一种方法，实现基本的字符串压缩功能。
+     * 比如，字符串aabcccccaaa会变为a2b1c5a3。若“压缩”后的字符串没有变短，则返回原先的字符串。
+     * 你可以假设字符串中只包含大小写英文字母（a至z）
+     * 快慢指针
+     *
+     * @param S "aabcccccaaa"
+     * @return "a2b1c5a3"
+     */
+    public String compressString(String S) {
+        if(S.length() == 0) return S;
+        char[] chars = S.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        int slow = 0;
+        int fast = 0;
+        while (fast <= chars.length) {
+            if (fast == chars.length) {
+                sb.append(chars[slow]).append(fast - slow);
+            } else if (chars[fast] != chars[slow]) {
+                sb.append(chars[slow]).append(fast - slow);
+                slow = fast;
+            }
+            fast++;
+        }
+        return sb.toString().length() < S.length() ? sb.toString() : S;
+    }
+
 }
