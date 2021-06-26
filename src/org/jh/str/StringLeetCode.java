@@ -437,7 +437,7 @@ public class StringLeetCode {
      * @return "a2b1c5a3"
      */
     public String compressString(String S) {
-        if(S.length() == 0) return S;
+        if (S.length() == 0) return S;
         char[] chars = S.toCharArray();
         StringBuilder sb = new StringBuilder();
         int slow = 0;
@@ -466,16 +466,48 @@ public class StringLeetCode {
         s = s.trim(); // 删除首尾空格
         int j = s.length() - 1, i = j;
         StringBuilder res = new StringBuilder();
-        while(i >= 0) {
-            while(i >= 0 && s.charAt(i) != ' ') {
+        while (i >= 0) {
+            while (i >= 0 && s.charAt(i) != ' ') {
                 i--; // 搜索首个空格
             }
             res.append(s.substring(i + 1, j + 1)).append(" "); // 添加单词
-            while(i >= 0 && s.charAt(i) == ' ') {
+            while (i >= 0 && s.charAt(i) == ' ') {
                 i--; // 跳过单词间空格
             }
             j = i; // j 指向下个单词的尾字符
         }
         return res.toString().trim(); // 转化为字符串并返回
     }
+
+    /**
+     * 罗马数字转整数
+     * 罗马数字包含以下七种字符: I， V， X， L，C，D 和 M。
+     *
+     * @param s XXVII
+     * @return 27
+     */
+    public static int romanToInt(String s) {
+        Map<Character, Integer> symbolValues = new HashMap<Character, Integer>() {{
+            put('I', 1);
+            put('V', 5);
+            put('X', 10);
+            put('L', 50);
+            put('C', 100);
+            put('D', 500);
+            put('M', 1000);
+        }};
+
+        int ans = 0;
+        int n = s.length();
+        for (int i = 0; i < n; ++i) {
+            int value = symbolValues.get(s.charAt(i));
+            if (i < n - 1 && value < symbolValues.get(s.charAt(i + 1))) {
+                ans -= value;
+            } else {
+                ans += value;
+            }
+        }
+        return ans;
+    }
+
 }
